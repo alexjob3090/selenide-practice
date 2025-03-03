@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class GoogleResultsPage {
-    private ElementsCollection elements = $$("[data-testid=\"result\"]");
+    private final ElementsCollection elements = $$("[data-testid=\"result\"]");
 
     public void checkCollectionSize(int size) {
        elements.shouldHave(sizeGreaterThan(size));

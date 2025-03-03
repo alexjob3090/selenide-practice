@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.$;
 
 public class GooglePage extends BasePage {
-    private By googleSearch = By.id("searchbox_input");
+    private final By googleSearch = By.id("searchbox_input");
 
     public void search(String text) {
         type(googleSearch, text);
