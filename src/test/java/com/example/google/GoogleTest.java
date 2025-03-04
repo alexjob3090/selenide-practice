@@ -25,7 +25,7 @@ public class GoogleTest {
 //            closeWebDriver();
 //        }
         Configuration.baseUrl = "https://duckduckgo.com";
-//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
         googlePage = new GooglePage();
         googleResultsPage = new GoogleResultsPage();
