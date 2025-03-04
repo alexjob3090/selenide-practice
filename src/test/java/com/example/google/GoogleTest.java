@@ -17,6 +17,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
@@ -32,33 +34,26 @@ public class GoogleTest {
 //        if (WebDriverRunner.hasWebDriverStarted()) {
 //            closeWebDriver();
 //        }
+
         Configuration.baseUrl = "https://duckduckgo.com";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
-//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
+        Configuration.browser = "chrome";
+        Configuration.browserVersion = "100.0"; // Optional, specify Chrome version
+        Configuration.browserSize = "1920x1080"; // Set resolution
+        Configuration.timeout = 10000; // Set timeout in milliseconds
+
+        // Enable Selenoid-specific capabilities
         ChromeOptions options = new ChromeOptions();
-        options.setCapability("browserVersion", "100.0");
-        options.setCapability("selenoid:options", new HashMap<String, Object>() {{
-            /* How to add test badge */
-            put("name", "Test badge...");
-
-            /* How to set session timeout */
-            put("sessionTimeout", "15m");
-
-            /* How to set timezone */
-            put("env", new ArrayList<String>() {{
-                add("TZ=UTC");
-            }});
-
-            /* How to add "trash" button */
-            put("labels", new HashMap<String, Object>() {{
-                put("manual", "true");
-            }});
-
-            /* How to enable video recording */
-            put("enableVideo", true);
-        }});
-        RemoteWebDriver driver = new RemoteWebDriver(new URL("https://user1:1234@selenoid.autotests.cloud/wd/hub"), options);
+        options.setCapability("selenoid:options", Map.of(
+                "name", "google search",           // Set test name (badge)
+//                "sessionTimeout", "15m",           // Set session timeout
+                "env", List.of("TZ=UTC"),          // Set timezone to UTC
+//                "labels", Map.of("manual", "true"),// Enable manual session cleanup
+                "enableVideo", true                // Enable video recording
+        ));
+        Configuration.browserCapabilities = options;
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
         googlePage = new GooglePage();
