@@ -177,10 +177,9 @@
                 <version>3.5.2</version>
                 <configuration>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                    </argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"                    </argLine>
                     <systemPropertyVariables>
-                        <selenide.headless>true</selenide.headless>
+                        <selenide.headless>false</selenide.headless>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
