@@ -1,7 +1,9 @@
 package com.example.google;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Step;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.example.pages.GooglePage;
 import org.example.pages.GoogleResultsPage;
@@ -10,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
+import static io.qameta.allure.Allure.step;
 
 public class GoogleTest {
 
@@ -18,17 +21,25 @@ public class GoogleTest {
 
     @BeforeEach
     public void setUp() {
-        if (WebDriverRunner.hasWebDriverStarted()) {
-            closeWebDriver();
-        }
+//        if (WebDriverRunner.hasWebDriverStarted()) {
+//            closeWebDriver();
+//        }
+        Configuration.baseUrl = "https://duckduckgo.com";
+//        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(true));
         googlePage = new GooglePage();
         googleResultsPage = new GoogleResultsPage();
-        open("https://duckduckgo.com");
+
     }
 
+    @Step("Test google search")
     @Test
     public void testGoogleSearch() {
+
+        step("Открываем главную страницу duckduckgo", () -> {
+            open("");
+        });
+
         googlePage.search("Selenium");
 
         googleResultsPage.checkCollectionSize(1);
