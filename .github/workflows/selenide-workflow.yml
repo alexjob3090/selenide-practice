@@ -60,7 +60,7 @@ jobs:
             }
           }
           EOF
-          docker pull selenoid/chrome:113.0
+          docker pull selenoid/chrome:latest
           docker pull selenoid/firefox:latest
 
       - name: Start Selenoid
