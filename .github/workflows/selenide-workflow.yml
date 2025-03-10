@@ -44,10 +44,10 @@ jobs:
           cat <<EOF > $HOME/.aerokube/selenoid/browsers.json
           {
             "chrome": {
-              "default": "113.0",
+              "default": "100.0",
               "versions": {
-                "113.0": {
-                  "image": "selenoid/chrome:113.0",
+                "100.0": {
+                  "image": "selenoid/chrome:100.0",
                   "port": "4444",
                   "path": "/",
                   "tmpfs": { "/tmp": "size=512m" },
