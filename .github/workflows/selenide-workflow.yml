@@ -30,12 +30,6 @@ jobs:
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-maven-
 
-      - name: Ensure Docker is running
-        run: |
-          sudo systemctl start docker
-          sudo systemctl enable docker
-          
-
       - name: Download and set up Selenoid browsers
         run: |
           mkdir -p $HOME/.aerokube/selenoid
@@ -60,7 +54,7 @@ jobs:
             }
           }
           EOF
-          docker pull selenoid/chrome:latest
+          docker pull selenoid/chrome:100.0
           docker pull selenoid/firefox:latest
 
       - name: Start Selenoid
