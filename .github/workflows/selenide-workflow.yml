@@ -3,11 +3,11 @@ name: Selenide Testing
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: "main"
+
   pull_request:
-    branches:
-      - main
+    branches: "main"
+
 
 jobs:
   test:
@@ -34,6 +34,34 @@ jobs:
         run: |
           sudo systemctl start docker
           sudo systemctl enable docker
+          
+
+      - name: Download and set up Selenoid browsers
+        run: |
+          mkdir -p $HOME/.aerokube/selenoid
+          cat <<EOF > $HOME/.aerokube/selenoid/browsers.json
+          {
+            "chrome": {
+              "default": "113.0",
+              "versions": {
+                "113.0": {
+                  "image": "selenoid/chrome:113.0",
+                  "port": "4444",
+                  "path": "/",
+                  "tmpfs": { "/tmp": "size=512m" },
+                  "env": ["LANG=C.UTF-8"],
+                  "capabilities": {
+                    "goog:chromeOptions": {
+                      "args": ["--disable-gpu", "--no-sandbox", "--disable-dev-shm-usage", "--remote-debugging-port=9222", "--headless"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+          EOF
+          docker pull selenoid/chrome:113.0
+          docker pull selenoid/firefox:latest
 
       - name: Start Selenoid
         run: |
