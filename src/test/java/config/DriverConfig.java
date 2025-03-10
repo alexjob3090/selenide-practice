@@ -17,10 +17,11 @@ public interface DriverConfig extends Config {
     String browserSize();
 
     @Key("browserVersion")
-    @DefaultValue("122.0")
+    @DefaultValue("134.0")
     String browserVersion();
 
     @Key("baseUrl")
+    @DefaultValue("https://demoqa.com")
     String baseUrl();
 
     @Key("isRemote")
