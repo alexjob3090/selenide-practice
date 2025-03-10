@@ -30,3 +30,18 @@ jobs:
 
       - name: Run Selenide Tests
         run: mvn clean test
+
+
+      - name: Generate Allure Report
+        run: mvn allure:report  # This generates the report in the 'target/allure-results' folder
+
+      - name: Upload Allure Results as Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-results
+          path: target/allure-results  # This uploads the raw allure result files for later inspection
+
+      - name: Serve Allure Report
+        run: |
+          allure serve target/allure-results  # This will generate and serve the report
+        continue-on-error: true  # This ensures that the job doesn't fail if serving the report fails
