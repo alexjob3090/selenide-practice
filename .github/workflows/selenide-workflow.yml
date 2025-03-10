@@ -32,56 +32,41 @@ jobs:
         run: |
             mkdir -p $HOME/.aerokube/selenoid
             cat <<EOF > $HOME/.aerokube/selenoid/browsers.json
-            {
-              "chrome": {
-                "default": "113.0",
-                "versions": {
-                  "113.0": {
-                    "image": "selenoid/chrome:113.0",
-                    "port": "4444",
-                    "path": "/",
-                    "tmpfs": { "/tmp": "size=512m" },
-                    "env": ["LANG=C.UTF-8"],
-                    "capabilities": {
-                      "goog:chromeOptions": {
-                        "args": [
-                          "--headless",
-                          "--no-sandbox",
-                          "--disable-dev-shm-usage",
-                          "--remote-debugging-port=9222"
-                        ]
+              {
+                "chrome": {
+                  "default": "113.0",
+                  "versions": {
+                    "113.0": {
+                      "image": "selenoid/chrome:113.0",
+                      "port": "4444",
+                      "path": "/",
+                      "tmpfs": { "/tmp": "size=512m" },
+                      "env": ["LANG=C.UTF-8"],
+                      "capabilities": {
+                        "goog:chromeOptions": {
+                          "args": [
+                            "--headless",
+                            "--no-sandbox",
+                            "--disable-dev-shm-usage",
+                            "--remote-debugging-port=9222",
+                            "--disable-gpu",
+                            "--disable-software-rasterizer",
+                            "--disable-extensions",
+                            "--disable-logging",
+                            "--log-level=3",
+                            "--disable-hardware-acceleration",
+                            "--virtual-time-budget=40000"
+                          ]
+                        }
                       }
                     }
                   }
                 }
-              },
-              "firefox": {
-                "default": "latest",
-                "versions": {
-                  "latest": {
-                    "image": "selenoid/firefox:latest",
-                    "port": "4444",
-                    "path": "/",
-                    "tmpfs": { "/tmp": "size=512m" },
-                    "env": ["LANG=C.UTF-8"],
-                    "capabilities": {
-                      "moz:firefoxOptions": {
-                        "args": [
-                          "--headless",
-                          "--no-sandbox",
-                          "--disable-dev-shm-usage",
-                          "--remote-debugging-port=9222"
-                        ]
-                      }
-                    }
-                  }
-                }
-              }
             }
             EOF
             # Pull the specified browser images
             docker pull selenoid/chrome:113.0
-            docker pull selenoid/firefox:latest
+#            docker pull selenoid/firefox:latest
 
       - name: Start Selenoid
         run: |
