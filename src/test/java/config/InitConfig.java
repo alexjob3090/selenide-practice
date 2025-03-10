@@ -18,9 +18,9 @@ public class InitConfig {
 
         Configuration.browser = config.browserName();
         Configuration.browserSize = config.browserSize();
-        Configuration.browserVersion = config.browserVersion();
+//        Configuration.browserVersion = config.browserVersion();
         Configuration.baseUrl = config.baseUrl();
-        Configuration.pageLoadStrategy = "eager";
+//        Configuration.pageLoadStrategy = "eager";
 
         if (config.isRemote()) {
             String remoteUrl = config.selenoidUser() + ":" + config.selenoidPassword() + "@selenoid.autotests.cloud/wd/hub";

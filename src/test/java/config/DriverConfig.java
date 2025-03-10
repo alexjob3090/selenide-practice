@@ -9,7 +9,7 @@ import org.aeonbits.owner.Config;
 public interface DriverConfig extends Config {
 
     @Key("browserName")
-    @DefaultValue("chrome")
+    @DefaultValue("firefox")
     String browserName();
 
     @Key("browserSize")
@@ -17,7 +17,7 @@ public interface DriverConfig extends Config {
     String browserSize();
 
     @Key("browserVersion")
-    @DefaultValue("113")
+//    @DefaultValue("113")
     String browserVersion();
 
     @Key("baseUrl")
