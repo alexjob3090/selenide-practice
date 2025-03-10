@@ -17,7 +17,7 @@ public interface DriverConfig extends Config {
     String browserSize();
 
     @Key("browserVersion")
-    @DefaultValue("latest")
+    @DefaultValue("113")
     String browserVersion();
 
     @Key("baseUrl")
