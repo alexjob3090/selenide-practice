@@ -1,12 +1,12 @@
-package ru.java.demoqa.tests;
+package tests;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.java.demoqa.pages.MainPage;
-import ru.java.demoqa.pages.PracticeFormPage;
+import pages.MainPage;
+import pages.PracticeFormPage;
 
 @Feature("Форма регистрации")
 @Story("Заполнение формы регистрации")
